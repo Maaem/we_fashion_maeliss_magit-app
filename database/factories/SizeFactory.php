@@ -19,8 +19,6 @@ class SizeFactory extends Factory
         return [
             'name' => fake()->randomElements(['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']),
             'quantity' => fake()->randomElements(['0', '1', '2', '3', '4', '5', '6']),
-
-
         ];
     }
 }
