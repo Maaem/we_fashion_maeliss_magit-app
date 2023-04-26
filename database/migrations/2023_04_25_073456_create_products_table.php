@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('price');
             $table->decimal('img');
             $table->enum('visibility', ['publish', 'not publish']);
-            $table->enum('state', ['sold', 'not sold']);
+            $table->enum('state', ['sold', 'soldout']);
             $table->decimal('reference');
             // foreign id
             $table->unsignedBigInteger('category_id')->index();

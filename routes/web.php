@@ -28,3 +28,7 @@ Route::get('/homme', function () {
 Route::get('/soldes', function () {
     return view('soldes');
 })->name('soldes');
+
+Route::get('/produits', function () {
+    return view('produits');
+})->name('produits');
