@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('price');
-            $table->decimal('img');
+            $table->string('img');
             $table->enum('visibility', ['publish', 'not publish']);
             $table->enum('state', ['sold', 'soldout']);
-            $table->decimal('reference');
+            $table->string('reference');
             // foreign id
             $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories');

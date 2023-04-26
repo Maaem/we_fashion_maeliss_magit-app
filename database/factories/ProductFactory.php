@@ -20,14 +20,12 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' =>fake()->text(100),
-            'price'=>fake()->float(),
-            'img'=>fake()->image(null, 360, 360, 'animals', true),
-            'visibility'=>fake()->randomElements(['publish', 'not publish']),
-            'state'=>fake()->randomElements(['sold', 'soldout']),
-            'reference'=>fake()->randomNumber(8, false),
+            'price'=>fake()->randomNumber(),
+            'img'=>fake()->imageUrl(null, 360, 360, 'animals', true),
+            'visibility'=>fake()->randomElement(['publish', 'not publish']),
+            'state'=>fake()->randomElement(['sold', 'soldout']),
+            'reference'=>fake()->unique()->word(),
             'category_id'=>Category::all()->random()->id,
-
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
 }

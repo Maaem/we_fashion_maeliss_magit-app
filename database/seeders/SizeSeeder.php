@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class SizeSeeder extends Seeder
@@ -12,6 +15,8 @@ class SizeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Size::factory()
+                ->count(20)
+                ->create();
     }
 }
