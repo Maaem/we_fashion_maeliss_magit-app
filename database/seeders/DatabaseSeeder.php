@@ -4,9 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use Database\Factories\CategoryFactory;
-use Database\Factories\ProductFactory;
-use Database\Factories\SizeFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +18,7 @@ class DatabaseSeeder extends Seeder
         ProductSeeder::class,
         SizeSeeder::class,
         ProductSizeSeeder::class,
+        UserSeeder::class,
     ]);
 }
 }

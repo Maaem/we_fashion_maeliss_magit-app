@@ -18,13 +18,13 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->unique()->word(),
             'description' =>fake()->text(100),
-            'price'=>fake()->randomNumber(),
+            'price'=>fake()->numberBetween(1,20),
             'img'=>fake()->imageUrl(null, 360, 360, 'animals', true),
             'visibility'=>fake()->randomElement(['publish', 'not publish']),
             'state'=>fake()->randomElement(['sold', 'soldout']),
-            'reference'=>fake()->unique()->word(),
+            'reference'=>fake()->regexify('[A-Z]{3}[0-4]{3}'),
             'category_id'=>Category::all()->random()->id,
         ];
     }
