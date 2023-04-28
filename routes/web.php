@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\FemmeController;
+use App\Http\Controllers\HommeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SoldesController;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,28 +19,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('accueil');
-})->name('accueil');
 
-Route::prefix('/')->name('accueil')->group(function ()
-{
-    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
-});
+
+Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+
+//plus pour la partie back = crud
+// Route::prefix('/')->name('accueil')->group(function ()
+// {
+//     Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+// });
 
 Route::get('/{slug}-{id}', [AccueilController::class, 'show']);
 
-Route::get('/femme', function () {
-    return view('femme');
-})->name('femme');
+// View for femme
 
-Route::get('/homme', function () {
-    return view('homme');
-})->name('homme');
+Route::get('/femme', [FemmeController::class, 'index'])->name('femme');
 
-Route::get('/soldes', function () {
-    return view('soldes');
-})->name('soldes');
+// View for homme
+
+Route::get('/homme', [HommeController::class, 'index'])->name('homme');
+
+// View for soldes
+
+Route::get('/soldes', [SoldesController::class, 'index'])->name('soldes');
+
 
 Route::get('/produits', function () {
     return view('produits');
@@ -47,10 +52,10 @@ Route::get('/produits', function () {
 //Partie Admin
 
 Route::get('/admin', [\App\Http\Controllers\AuthController::class,'forLogin'])->name('auth.login');
-Route::delete('/logout', [\App\Http\Controllers\AuthController::class,'forLogout'])->name('auth.logout');
+Route::get('/logout', [\App\Http\Controllers\AuthController::class,'forLogout'])->name('auth.logout');
 Route::post ('/admin', [\App\Http\Controllers\AuthController::class,'doLogin']);
   
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware(\App\Http\Middleware\Authenticate::class);

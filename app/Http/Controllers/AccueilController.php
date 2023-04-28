@@ -6,12 +6,16 @@ use App\Models\Product;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AccueilController extends Controller
 {
-    public function index() : Paginator
+    public function index() : View
     {
-        return \App\Models\Product::paginate(6); 
+
+        return view('accueil', [
+            'products' => \App\Models\Product::paginate(6)
+        ]);
     }
 
     public function show(string $slug, string $id) : RedirectResponse | Product

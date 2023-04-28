@@ -31,7 +31,7 @@ class AuthController extends Controller
     public function forLogout()
     {
         Auth::logout();
-         return to_route('admin'); 
+         return to_route('auth.login'); 
     }
     
 }

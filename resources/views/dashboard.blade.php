@@ -19,16 +19,16 @@
                 </a>
                 <div class="flex items-center">
                     @auth
-                    <a href="tel:5541251234" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">Bonjour {{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                    <a href="tel:5541251234" class="mr-6 text-sm  text-gray-500 dark:text-white">Bonjour {{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
                     <form action="{{ route('auth.logout')}}" method="post">
                         @method('delete')
                         @csrf
-                        <button class="text-sm  text-[#66EB9A] dark:text-blue-500 hover:underline">Se deconnecter</button> 
+                        <button class="text-sm  text-[#66EB9A] dark:text-blue-500">Se deconnecter</button> 
                     </form>
                     @endauth
 
                     @guest
-                        <a href="{{ route('admin')}}" class="text-sm  text-[#66EB9A] dark:text-blue-500 hover:underline">Se connecter</a>
+                        <a href="{{ route('auth.login')}}" class="text-sm  text-[#66EB9A] dark:text-blue-500">Se connecter</a>
                     @endguest
                 </div>
             </div>

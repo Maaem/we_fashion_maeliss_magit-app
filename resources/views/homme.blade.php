@@ -31,39 +31,25 @@
     <h2 id="products-heading" class="sr-only">Products</h2>
 
     <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+    @foreach ($products as $product)
+
     <a href="{{ route('produits') }}" class="group">
         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg sm:aspect-h-3 sm:aspect-w-2">
-          <img src="https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-03.jpg" alt="Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop." class="h-full w-full object-cover object-center group-hover:opacity-75">
+          <img src="{{ asset($product->img) }}" alt="{{ $product->name }} image" class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>
         <div class="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-          <h3>Focus Carry Case</h3>
-          <p>$32</p>
-        </div>
-        <p class="mt-1 text-sm italic text-gray-500">Heather Gray</p>
-      </a>
-      <a href="{{ route('produits') }}" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg sm:aspect-h-3 sm:aspect-w-2">
-          <img src="https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-03.jpg" alt="Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <div class="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-          <h3>Focus Carry Case</h3>
-          <p>$32</p>
-        </div>
-        <p class="mt-1 text-sm italic text-gray-500">Heather Gray</p>
-      </a>
-      <a href="{{ route('produits') }}" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg sm:aspect-h-3 sm:aspect-w-2">
-          <img src="https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-03.jpg" alt="Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <div class="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-          <h3>Focus Carry Case</h3>
-          <p>$32</p>
+          <h3>{{ $product->name }}</h3>
+          <p>{{ $product->price }}€</p>
         </div>
         <p class="mt-1 text-sm italic text-gray-500">Heather Gray</p>
       </a>
 
       <!-- More products... -->
+      @endforeach
+
     </div>
+    {{ $products->links() }}
+
   </div>
 </div>
 

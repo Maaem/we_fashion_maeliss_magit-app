@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'name' => fake()->unique()->word(),
             'description' =>fake()->text(100),
             'price'=>fake()->numberBetween(1,20),
-            'img'=>fake()->imageUrl(null, 360, 360, 'animals', true),
+            'img'=>fake()->imageUrl(200, 200),
             'visibility'=>fake()->randomElement(['publish', 'not publish']),
             'state'=>fake()->randomElement(['sold', 'soldout']),
             'reference'=>fake()->regexify('[A-Z]{3}[0-4]{3}'),
