@@ -12,8 +12,8 @@ class Category extends Model
 
     public $timestamps = false;
 
-    public function product(): HasOne
-    {
-        return $this->hasOne(Product::class);
-    }
+    // public function product(): HasOne
+    // {
+    //     return $this->hasOne(Product::class);
+    // }
 }

@@ -27,8 +27,8 @@
                 <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
                     <div class="lg:col-span-5 lg:col-start-8">
                     <div class="flex justify-between">
-                        <h1 class="text-xl font-medium text-gray-900">Basic Tee</h1>
-                        <p class="text-xl font-medium text-gray-900">$35</p>
+                        <h1 class="text-xl font-medium text-gray-900">{{ $product->name }}</h1>
+                        <p class="text-xl font-medium text-gray-900">{{ $product->price }}€</p>
                     </div>
                     </div>
 
@@ -37,80 +37,38 @@
                     <h2 class="sr-only">Images</h2>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 lg:gap-8">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-01.jpg" alt="Side profile of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-02.jpg" alt="Front of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
+                        <img src="{{ asset($product->img) }}" alt="{{ $product->name }} image" class="h-full w-full object-cover object-center group-hover:opacity-75">
                     </div>
                     </div>
 
                     <div class="mt-8 lg:col-span-5">
                     <form>
+
                         <!-- Size picker -->
                         <div class="mt-8">
                         <div class="flex items-center justify-between">
-                            <h2 class="text-sm font-medium text-gray-900">Size</h2>
-                            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See sizing chart</a>
                         </div>
 
-                        <fieldset class="mt-2">
-                            <legend class="sr-only">Choose a size</legend>
-                            <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                                <span id="size-choice-0-label">XXS</span>
-                            </label>
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                                <span id="size-choice-1-label">XS</span>
-                            </label>
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                                <span id="size-choice-2-label">S</span>
-                            </label>
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                                <span id="size-choice-3-label">M</span>
-                            </label>
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                                <span id="size-choice-4-label">L</span>
-                            </label>
-                            <!--
-                                In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                Active: "ring-2 ring-indigo-500 ring-offset-2"
-                                Checked: "border-transparent bg-indigo-600 text-white hover:bg-indigo-700", Not Checked: "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                            -->
-                            <label class="flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1 cursor-not-allowed opacity-25">
-                                <input type="radio" name="size-choice" value="XL" disabled class="sr-only" aria-labelledby="size-choice-5-label">
-                                <span id="size-choice-5-label">XL</span>
-                            </label>
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="button">Choississez votre taille <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                </li>
+                                </ul>
                             </div>
-                        </fieldset>
+
+                      
                         </div>
 
                         <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
@@ -121,8 +79,7 @@
                         <h2 class="text-sm font-medium text-gray-900">Description</h2>
 
                         <div class="prose prose-sm mt-4 text-gray-500">
-                        <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
-                        <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
+                        <p>{{ $product->description }}</p>
                         </div>
                     </div>
                     </div>
@@ -130,7 +87,6 @@
                 </div>
             </div>
             </div>
-
 
 
 

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FemmeController;
 use App\Http\Controllers\HommeController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SoldesController;
 use Illuminate\Support\Facades\Request;
@@ -43,10 +46,10 @@ Route::get('/homme', [HommeController::class, 'index'])->name('homme');
 
 Route::get('/soldes', [SoldesController::class, 'index'])->name('soldes');
 
+// View for produit
 
-Route::get('/produits', function () {
-    return view('produits');
-})->name('produits');
+Route::get('/produits/{id}', [ProduitController::class, 'show'])->name('produits');
+
 
 
 //Partie Admin
@@ -56,6 +59,9 @@ Route::get('/logout', [\App\Http\Controllers\AuthController::class,'forLogout'])
 Route::post ('/admin', [\App\Http\Controllers\AuthController::class,'doLogin']);
   
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard')->middleware(\App\Http\Middleware\Authenticate::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(\App\Http\Middleware\Authenticate::class);
+
+Route::get('/dashbaord/categories', [CategoriesController::class, 'index'])->name('categories')->middleware(\App\Http\Middleware\Authenticate::class);
+
+Route::get('/dashboard/form/{id}', [ProduitController::class, 'edit'])->name('form')->middleware(\App\Http\Middleware\Authenticate::class);
+Route::put('/produits/{product}', [ProduitController::class, 'update'])->name('produits.update')->middleware(\App\Http\Middleware\Authenticate::class);

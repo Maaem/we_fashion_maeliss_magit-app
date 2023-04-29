@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f497fb9706.js" crossorigin="anonymous"></script>
-    <title>Dashboard</title>
+    <title>Dashboard - Categories</title>
 </head>
 <body>
     <!-- header -->
@@ -20,10 +20,7 @@
                 </div>
                 <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                         <li>
-                            <a href="{{ route('dashboard')}}" class="text-[#66EB9A] dark:text-white" aria-current="page">Produits</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('categories')}}" class="text-[#66EB9A] dark:text-white">Categories</a>
+                            <a href="{{ route('dashboard')}}" class="text-[#66EB9A] dark:text-white">Dashboard</a>
                         </li>
                     </ul>
                 <div class="flex items-center">
@@ -73,16 +70,10 @@
                             Catégorie
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Prix
+                            Modifier
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            État
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
+                            Supprimer
                         </th>
                     </tr>
                 </thead>
@@ -96,13 +87,7 @@
                             {{ $product->category_id }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $product->price }}€
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $product->state }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="{{ route('form', $product->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Supprimer</a>

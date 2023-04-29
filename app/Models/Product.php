@@ -10,14 +10,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Product extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['name', 'description', 'state', 'category_id', 'price'];
 
     public function size(): BelongsToMany 
     {
         return $this->belongsToMany(Size::class);
     }
 
-    public function category(): HasOne
-    {
-        return $this->hasOne(Category::class);
-    }
+    // public function category(): HasOne
+    // {
+    //     return $this->hasOne(Category::class);
+    // }
 }

@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->string('img');
-            $table->enum('visibility', ['publish', 'not publish']);
-            $table->enum('state', ['sold', 'soldout']);
-            $table->string('reference');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('price')->nullable();
+            $table->string('img')->nullable();
+            $table->enum('visibility', ['publish', 'not publish'])->nullable();
+            $table->enum('state', ['sold', 'soldout'])->nullable();
+            $table->string('reference')->nullable();
             // foreign id
-            $table->unsignedBigInteger('category_id')->index();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('category_id')->index()->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->nullable();
             
             $table->timestamps();
 
