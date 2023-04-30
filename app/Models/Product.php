@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
@@ -13,10 +13,11 @@ class Product extends Model
     
     protected $fillable = ['name', 'description', 'state', 'category_id', 'price'];
 
-    public function size(): BelongsToMany 
+    public function sizes()
     {
-        return $this->belongsToMany(Size::class);
+        return $this->belongsToMany(Size::class, 'product_size');
     }
+    
 
     // public function category(): HasOne
     // {

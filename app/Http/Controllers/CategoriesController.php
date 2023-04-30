@@ -15,4 +15,12 @@ class CategoriesController extends Controller
         return view('categories', ['products' => $products]);
     }
 
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('categories')->with('success', 'Votre produit a bien été supprimé !');
+    }
+
 }

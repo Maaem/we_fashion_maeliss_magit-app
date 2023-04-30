@@ -9,15 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    // public function up(): void
+    // {
+    //     Schema::create('product_sizes', function (Blueprint $table) {
+    //         $table->unsignedBigInteger('product_id')->index();
+    //         $table->foreign('product_id')->references('id')->on('products');
+
+    //         $table->unsignedBigInteger('size_id')->index();
+    //         $table->foreign('size_id')->references('id')->on('sizes');;
+
+    //     });
+    // }
+
+    public function up()
     {
         Schema::create('product_sizes', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->index();
-            $table->foreign('product_id')->references('id')->on('products');
-
-            $table->unsignedBigInteger('size_id')->index();
-            $table->foreign('size_id')->references('id')->on('sizes');;
-
+            $table->id();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->foreignId('size_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

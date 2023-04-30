@@ -89,9 +89,13 @@
                         <td class="px-6 py-4">
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Supprimer</a>
-                        </td>
+                        <form action="{{ route('categories.destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <td class="px-6 py-4">
+                                <button onclick="return confirm('Are you sure you want to delete this product?')" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Supprimer</button>
+                            </td>
+                        </form>
                     </tr>
                     @endforeach
                 </tbody>

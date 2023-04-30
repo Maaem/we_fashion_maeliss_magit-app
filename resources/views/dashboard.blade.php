@@ -58,7 +58,7 @@
 
         <!--  -->
         <div class="ml-4 mt-4 flex-shrink-0 m-8 flex justify-end">
-            <button type="button" class="relative inline-flex items-center rounded-md text-[#66EB9A] px-3 py-2 text-sm font-semibold bg-blue-950 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Nouveau</button>
+            <a href="{{ route('createproduct') }}" class="relative inline-flex items-center rounded-md text-[#66EB9A] px-3 py-2 text-sm font-semibold bg-blue-950 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Nouveau</a>
         </div>
         <!--  -->
 
@@ -104,9 +104,13 @@
                         <td class="px-6 py-4">
                             <a href="{{ route('form', $product->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                         </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Supprimer</a>
-                        </td>
+                        <form action="{{ route('dashboard.destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <td class="px-6 py-4">
+                                <button onclick="return confirm('Are you sure you want to delete this product?')" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Supprimer</button>
+                            </td>
+                        </form>
                     </tr>
                     @endforeach
                 </tbody>

@@ -26,12 +26,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AccueilController::class, 'index'])->name('accueil');
 
-//plus pour la partie back = crud
-// Route::prefix('/')->name('accueil')->group(function ()
-// {
-//     Route::get('/', [AccueilController::class, 'index'])->name('accueil');
-// });
-
 Route::get('/{slug}-{id}', [AccueilController::class, 'show']);
 
 // View for femme
@@ -48,7 +42,7 @@ Route::get('/soldes', [SoldesController::class, 'index'])->name('soldes');
 
 // View for produit
 
-Route::get('/produits/{id}', [ProduitController::class, 'show'])->name('produits');
+Route::get('/produits/{id}', [ProduitController::class, 'show'])->name('produits.show');
 
 
 
@@ -59,9 +53,25 @@ Route::get('/logout', [\App\Http\Controllers\AuthController::class,'forLogout'])
 Route::post ('/admin', [\App\Http\Controllers\AuthController::class,'doLogin']);
   
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(\App\Http\Middleware\Authenticate::class);
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashbaord/categories', [CategoriesController::class, 'index'])->name('categories')->middleware(\App\Http\Middleware\Authenticate::class);
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
 
-Route::get('/dashboard/form/{id}', [ProduitController::class, 'edit'])->name('form')->middleware(\App\Http\Middleware\Authenticate::class);
-Route::put('/produits/{product}', [ProduitController::class, 'update'])->name('produits.update')->middleware(\App\Http\Middleware\Authenticate::class);
+    Route::get('/form/{id}', [ProduitController::class, 'edit'])->name('form');
+    Route::put('/produits/{product}', [ProduitController::class, 'update'])->name('produits.update');
+
+    Route::delete('/{product}', [ProduitController::class, 'destroy'])->name('dashboard.destroy');
+
+    Route::get('/createproduct', [ProduitController::class, 'create'])->name('createproduct');
+    Route::post('/', [ProduitController::class, 'store'])->name('products.store');
+
+    //Categories
+
+    Route::delete('/{categories}', [ProduitController::class, 'destroy'])->name('categories.destroy');
+
+});
+
+
+
+

@@ -12,8 +12,10 @@ class Size extends Model
 
     public $timestamps = false;
 
-    public function product(): BelongsToMany {
-        return $this->belongsToMany(Product::class);
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_size');
     }
+
 
 }

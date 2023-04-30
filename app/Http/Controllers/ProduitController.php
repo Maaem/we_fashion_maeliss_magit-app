@@ -6,18 +6,18 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
-    public function show(string $id)
+
+    public function show($id)
     {
         $product = Product::find($id);
-
+    
         if (!$product) {
             abort(404);
         }
-
+    
         return view('produits', ['product' => $product]);
     }
 
@@ -36,13 +36,89 @@ class ProduitController extends Controller
         return view('form', ['product' => $product]);
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, $id)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'category_id' => 'required|integer',
+        'description' => 'required|string', 
+        'visibility' => 'required|string',
+        'price' => 'required|stri',
+        'state' => 'required|string',
+        'reference' => 'required|string|max:255',
+    ]);
+
+    $product = Product::findOrFail($id);
+
+    $product->update($validated);
+
+    if ($request->hasFile('img')) {
+        $imagePath = $request->file('img')->store('storage/images');
+        $imagePath = str_replace('public/', '', $imagePath);
+        $product->img = $imagePath;
+        $product->save();
+    }
+
+    return redirect()->route('dashboard', $product->id);
+}
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Votre produit a bien été supprimé !');
+    }
+
+
+    /**
+     * return le formulaire de créationcreation d'un contact
+     */
+    public function create()
     {
 
-        $product->update($request->validated());
+        return view('createproduct');
 
-        return redirect()->route('dashboard')->with('success', 'Votre produit a bien été modifié !');
     }
+
+
+    /**
+     * Enregistre un nouveau contact dans la base de données
+     */
+
+     public function store(ProductRequest $request)
+     {
+         if ($request->hasFile('img')) {
+             $imagePath = $request->file('img')->store('storage/images');
+             $imagePath = str_replace('public/', '', $imagePath);
+     
+             $category_id = $request->input('category_id');
+             if (!Category::where('id', $category_id)->exists()) {
+                 return redirect()->back()->with('error', 'Invalid category ID.');
+             }
+     
+             $product = new Product();
+             $product->name = $request->input('name');
+             $product->description = $request->input('description');
+             $product->price = $request->input('price');
+             $product->reference = $request->input('reference');
+             $product->visibility = $request->input('visibility');
+             $product->state = $request->input('state');
+             $product->img = $imagePath;
+             $product->category_id = $category_id;
+     
+             $product->save();
+     
+             return redirect('dashboard')->with('success', 'Product created successfully!');
+         }
+     
+         return redirect()->back()->with('error', 'No image file was provided.');
+     }
+
+
+
+
+
 }
 
     
