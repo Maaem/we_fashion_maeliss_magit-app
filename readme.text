@@ -1,0 +1,9 @@
+Voici les étapes à effectuer pour lancer le projet :
+
+php artisan migrate:fresh --seed : permettra d’afficher les  produits sur la page d’accueil et dans la partie admin
+
+php artisan serve : permettra de lancer le contenu
+
+pour avoir accès à la partie admin, il faut aller dans database => seeders => UserSeeder et vous aurez accès à l’identifiant et au mot de passe pour se connecter à la partie admin
+
+Voici le lien gitub : https://github.com/Maaem/we_fashion_maeliss_magit-app
